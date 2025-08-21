@@ -1,18 +1,3 @@
-/*
- * Copyright 2017 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.google.ar.core.examples.java.common.helpers;
 
 import android.app.Activity;
@@ -52,12 +37,12 @@ public final class DisplayRotationHelper implements DisplayListener {
     display = windowManager.getDefaultDisplay();
   }
 
-  /** Registers the display listener. Should be called from {@link Activity#onResume()}. */
+  /** Registers the display listener. Should be called from . */
   public void onResume() {
     displayManager.registerDisplayListener(this, null);
   }
 
-  /** Unregisters the display listener. Should be called from {@link Activity#onPause()}. */
+  /** Unregisters the display listener. Should be called from . */
   public void onPause() {
     displayManager.unregisterDisplayListener(this);
   }

@@ -19,6 +19,7 @@ import android.media.Image;
 import android.opengl.GLES30;
 import com.google.ar.core.Coordinates2d;
 import com.google.ar.core.Frame;
+import com.google.ar.core.Session;
 import com.google.ar.core.examples.java.common.samplerender.Framebuffer;
 import com.google.ar.core.examples.java.common.samplerender.Mesh;
 import com.google.ar.core.examples.java.common.samplerender.SampleRender;
@@ -76,8 +77,7 @@ public class BackgroundRenderer {
 
   /**
    * Allocates and initializes OpenGL resources needed by the background renderer. Must be called
-   * during a {@link SampleRender.Renderer} callback, typically in {@link
-   * SampleRender.Renderer#onSurfaceCreated()}.
+   * during a {@link SampleRender.Renderer} callback, typically in .
    */
   public BackgroundRenderer(SampleRender render) {
     cameraColorTexture =
@@ -184,7 +184,7 @@ public class BackgroundRenderer {
    * Updates the display geometry. This must be called every frame before calling either of
    * BackgroundRenderer's draw methods.
    *
-   * @param frame The current {@code Frame} as returned by {@link Session#update()}.
+   * @param frame The current {@code Frame} as returned by .
    */
   public void updateDisplayGeometry(Frame frame) {
     if (frame.hasDisplayGeometryChanged()) {
@@ -229,14 +229,12 @@ public class BackgroundRenderer {
     render.draw(mesh, backgroundShader);
   }
 
-  /**
-   * Draws the virtual scene. Any objects rendered in the given {@link Framebuffer} will be drawn
-   * given the previously specified {@link OcclusionMode}.
-   *
-   * <p>Virtual content should be rendered using the matrices provided by {@link
-   * com.google.ar.core.Camera#getViewMatrix(float[], int)} and {@link
-   * com.google.ar.core.Camera#getProjectionMatrix(float[], int, float, float)}.
-   */
+  /// Draws the virtual scene. Any objects rendered in the given [Framebuffer] will be drawn
+  /// given the previously specified [].
+  ///
+  /// Virtual content should be rendered using the matrices provided by
+  /// [#getViewMatrix(float[],int)] and
+  /// [#getProjectionMatrix(float[],int,float,float)].
   public void drawVirtualScene(
       SampleRender render, Framebuffer virtualSceneFramebuffer, float zNear, float zFar) {
     occlusionShader.setTexture(

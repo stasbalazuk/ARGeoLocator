@@ -152,17 +152,17 @@ public class GeospatialActivity extends AppCompatActivity
     UNSUPPORTED,
     /** The Geospatial API has encountered an unrecoverable error. */
     EARTH_STATE_ERROR,
-    /** The Session has started, but {@link Earth} isn't {@link TrackingState.TRACKING} yet. */
+    /// The Session has started, but [Earth] isn't [TrackingState] yet.
     PRETRACKING,
     /**
-     * {@link Earth} is {@link TrackingState.TRACKING}, but the desired positioning confidence
+     * {@link Earth} is {@link TrackingState}, but the desired positioning confidence
      * hasn't been reached yet.
      */
     LOCALIZING,
     /** The desired positioning confidence wasn't reached in time. */
     LOCALIZING_FAILED,
     /**
-     * {@link Earth} is {@link TrackingState.TRACKING} and the desired positioning confidence has
+     * {@link Earth} is {@link TrackingState} and the desired positioning confidence has
      * been reached.
      */
     LOCALIZED
@@ -353,6 +353,20 @@ public class GeospatialActivity extends AppCompatActivity
   private void createSession() {
     Exception exception = null;
     String message = null;
+    ArCoreApk.Availability availability = ArCoreApk.getInstance().checkAvailability(this);
+    if (availability == ArCoreApk.Availability.UNSUPPORTED_DEVICE_NOT_CAPABLE) {
+      messageSnackbarHelper.showError(this, "ARCore is not supported on this device.");
+      Log.e(TAG, "ARCore unsupported");
+      return;
+    } else if (availability == ArCoreApk.Availability.UNKNOWN_CHECKING) {
+      messageSnackbarHelper.showError(this, "Checking ARCore availability...");
+      Log.d(TAG, "ARCore availability is being checked");
+      return;
+    } else if (availability == ArCoreApk.Availability.UNKNOWN_ERROR) {
+      messageSnackbarHelper.showError(this, "Error checking ARCore availability.");
+      Log.e(TAG, "ARCore availability check failed");
+      return;
+    }
     if (session == null) {
 
       try {
@@ -929,9 +943,9 @@ public class GeospatialActivity extends AppCompatActivity
   }
 
   /**
-   * Handles the updating for {@link State.PRETRACKING}. In this state, wait for {@link Earth} to
-   * have {@link TrackingState.TRACKING}. If it hasn't been enabled by now, then we've encountered
-   * an unrecoverable {@link State.EARTH_STATE_ERROR}.
+   * Handles the updating for {@link State}. In this state, wait for {@link Earth} to
+   * have {@link TrackingState}. If it hasn't been enabled by now, then we've encountered
+   * an unrecoverable {@link State}.
    */
   private void updatePretrackingState(Earth earth) {
     if (earth.getTrackingState() == TrackingState.TRACKING) {
@@ -943,7 +957,7 @@ public class GeospatialActivity extends AppCompatActivity
   }
 
   /**
-   * Handles the updating for {@link State.LOCALIZING}. In this state, wait for the horizontal and
+   * Handles the updating for {@link State}. In this state, wait for the horizontal and
    * orientation threshold to improve until it reaches your threshold.
    *
    * <p>If it takes too long for the threshold to be reached, this could mean that GPS data isn't
@@ -984,8 +998,8 @@ public class GeospatialActivity extends AppCompatActivity
   }
 
   /**
-   * Handles the updating for {@link State.LOCALIZED}. In this state, check the accuracy for
-   * degradation and return to {@link State.LOCALIZING} if the position accuracies have dropped too
+   * Handles the updating for {@link State}. In this state, check the accuracy for
+   * degradation and return to {@link State} if the position accuracies have dropped too
    * low.
    */
   private void updateLocalizedState(Earth earth) {

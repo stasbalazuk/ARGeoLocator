@@ -228,8 +228,8 @@ public class SpecularCubemapFilter implements Closeable {
    * Updates and filters the provided cubemap textures from ARCore.
    *
    * <p>This method should be called every frame with the result of {@link
-   * com.google.ar.core.LightEstimate.acquireEnvironmentalHdrCubeMap()} to update the filtered
-   * cubemap texture, accessible via {@link getFilteredCubemapTexture()}.
+   * ()} to update the filtered
+   *  texture, accessible via {@link ()}.
    *
    * <p>The given {@link Image}s will be closed by this method, even if an exception occurs.
    */

@@ -30,7 +30,7 @@ import java.nio.IntBuffer;
 /**
  * A collection of vertices, faces, and other attributes that define how to render a 3D object.
  *
- * <p>To render the mesh, use {@link SampleRender#draw()}.
+ * <p>To render the mesh, use {@link #()}.
  */
 public class Mesh implements Closeable {
   private static final String TAG = Mesh.class.getSimpleName();
@@ -38,7 +38,7 @@ public class Mesh implements Closeable {
   /**
    * The kind of primitive to render.
    *
-   * <p>This determines how the data in {@link VertexBuffer}s are interpreted. See <a
+   * <p>This determines how the data in {@link }s are interpreted. See <a
    * href="https://www.khronos.org/opengl/wiki/Primitive">here</a> for more on how primitives
    * behave.
    */

@@ -15,7 +15,7 @@
    limitations under the License.
 -->
 <resources>
-  <string translatable="false" name="app_name">Geospatial Java</string>
+  <string translatable="false" name="app_name">Argeolocator</string>
   <string translatable="false" name="button_text_set_anchor">ANCHOR SETTING</string>
   <string translatable="false" name="switch_render_streetscaope_geometry">SHOW GEOMETRY</string>
   <string translatable="false" name="button_text_clear_anchors">CLEAR ALL ANCHORS</string>
